@@ -76,7 +76,7 @@ void saveResult(int n, double time, const std::string &filename) {
   ofs << n << ',' << std::fixed << std::setprecision(6) << time << '\n';
 }
 
-void saveCombined(int n, const std::vector<double> &times, const std::string &labels, const std::string &filename) {
+void saveCombined(int n, const std::vector<double> &times, const std::string* labels, const std::string &filename) {
   bool need_header = false;
   {
     std::ifstream ifs(filename);
@@ -105,7 +105,7 @@ void saveCombined(int n, const std::vector<double> &times, const std::string &la
 
   if (need_header) {
     ofs << "n";
-    for (const auto &lab : labels) ofs << ',' << lab;
+    for (int i = 0; i < 4; ++i) ofs << ',' << labels[i];
     ofs << '\n';
   }
 
